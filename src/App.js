@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Mountain from './Mountains/Mountain';
 
-class App extends Component {
-
-    state = {
+const app = props => {
+    const [mntState, setMntState] = useState({
         mountain: [
             { name: "Mount Everest", height: "8848" },
             { name: "Kanchenjunga", height: "8586" },
             { name: "K2", height: "8611" }
-        ]
-    }
-    switchNameHandler = props => {
-        this.setState(
+        ],
+
+    });
+
+    const switchNameHandler = props => {
+        setMntState(
             {
                 mountain: [
                     { name: "Everest", height: "8848" },
@@ -23,27 +24,31 @@ class App extends Component {
             }
         )
     }
-    render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <h3>Mountains are calling ...</h3>
 
-                <button onClick={this.switchNameHandler}> Switch </button>
-                <Mountain name={this.state.mountain[0].name} height={this.state.mountain[0].height} />
-                <Mountain name={this.state.mountain[2].name} height={this.state.mountain[2].height}> <small >Most dengerous</small></Mountain>
-                <Mountain name={this.state.mountain[1].name} height={this.state.mountain[1].height} />
-                <p class="App-intro">
-                    {/* To get started, edit <code>src/App.js</code> and save to reload. */}
-                </p>
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <h1 className="App-title">Welcome to React</h1>
+            </header>
+            <h3>Mountains are calling ...</h3>
+
+            <button onClick={switchNameHandler}> Switch </button>
+            <Mountain name={mntState.mountain[0].name} height={mntState.mountain[0].height} />
+            <Mountain name={mntState.mountain[2].name} height={mntState.mountain[2].height}> <small >Most dengerous</small></Mountain>
+            <Mountain name={mntState.mountain[1].name} height={mntState.mountain[1].height} />
+            <p class="App-intro">
+                {/* To get started, edit <code>src/App.js</code> and save to reload. */}
+            </p>
 
 
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default App;
+export default app;
+
+/*
+  state =
+    
+*/
